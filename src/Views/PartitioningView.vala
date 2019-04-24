@@ -192,7 +192,7 @@ public class Installer.PartitioningView : AbstractInstallerView {
                 partitions.add (partition);
             }
 
-            var disk_bar = new DiskBar (model, path, size, (owned) partitions);
+            var disk_bar = new DiskBar (model, path, size, sector_size, (owned) partitions);
             label_sizer.add_widget (disk_bar.label);
             disk_list.pack_start (disk_bar);
         }
@@ -248,7 +248,7 @@ public class Installer.PartitioningView : AbstractInstallerView {
             }
         }
 
-        var disk_bar = new DiskBar (model, path, size, (owned) partitions);
+        var disk_bar = new DiskBar (model, path, size, sector_size, (owned) partitions);
         label_sizer.add_widget (disk_bar.label);
         disk_list.pack_start (disk_bar);
     }
