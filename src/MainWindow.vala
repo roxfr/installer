@@ -39,6 +39,7 @@ public class Installer.MainWindow : Gtk.Dialog {
 
     private DateTime? start_date = null;
     private DateTime? end_date = null;
+    private bool reboot_on_cancel = false;
 
     public MainWindow () {
         Object (
@@ -60,7 +61,7 @@ public class Installer.MainWindow : Gtk.Dialog {
 
         const uint64 DEFAULT_MINIMUM_SIZE = 5000000000;
         minimum_disk_size = Distinst.minimum_disk_size (DEFAULT_MINIMUM_SIZE / 512);
-        
+
         unowned InstallOptions options = InstallOptions.get_default ();
         options.set_minimum_size (minimum_disk_size);
 
@@ -81,8 +82,14 @@ public class Installer.MainWindow : Gtk.Dialog {
                 break;
             case Modes.Mode.REFRESH:
                 headerbar.title = _("Refresh OS");
+                this.reboot_on_cancel = true;
                 startup_decrypt (recovery_option, Modes.Mode.REFRESH);
         }
+    }
+
+    private void cancelled_reboot () {
+        Distinst.unset_mode ();
+        Utils.restart ();
     }
 
     private void post_decrypt (Modes.Mode mode, Distinst.RecoveryOption recovery_option) {
@@ -144,7 +151,6 @@ public class Installer.MainWindow : Gtk.Dialog {
             if (!opts.is_oem_mode ()) {
                 load_try_install_view ();
             } else {
-                unowned Configuration config = Configuration.get_default ();
                 unowned Distinst.InstallOptions options = opts.get_options ();
                 var recovery = options.get_recovery_option ();
 
@@ -175,22 +181,26 @@ public class Installer.MainWindow : Gtk.Dialog {
     }
 
     private void load_refresh_view () {
-        if (refresh_view == null) {
-            refresh_view = new RefreshView ();
-            refresh_view.previous_view = try_install_view;
-            
-            refresh_view.next_step.connect ((retain_old) => {
+        if (this.refresh_view == null) {
+            this.refresh_view = new RefreshView ();
+            this.refresh_view.previous_view = this.try_install_view;
+
+            this.refresh_view.next_step.connect ((retain_old) => {
                 Configuration.get_default ().retain_old = retain_old;
-                load_progress_view ();
+                this.load_progress_view ();
             });
 
-            refresh_view.cancel.connect (load_try_install_view);
+            if (this.reboot_on_cancel) {
+                this.refresh_view.cancel.connect(this.cancelled_reboot);
+            } else {
+                this.refresh_view.cancel.connect(this.load_try_install_view);
+            }
 
-            stack.add (refresh_view);
+            this.stack.add (this.refresh_view);
         }
 
-        stack.visible_child = refresh_view;
-        refresh_view.update_options ();
+        this.stack.visible_child = this.refresh_view;
+        this.refresh_view.update_options ();
     }
 
     private void set_check_view_visible (bool show) {
