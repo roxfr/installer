@@ -40,6 +40,7 @@ public class Installer.MainWindow : Gtk.Dialog {
     private DateTime? start_date = null;
     private DateTime? end_date = null;
     private bool reboot_on_cancel = false;
+    private Modes.Mode mode;
 
     public MainWindow () {
         Object (
@@ -71,7 +72,8 @@ public class Installer.MainWindow : Gtk.Dialog {
 
         weak Gtk.HeaderBar? headerbar = (Gtk.HeaderBar) get_header_bar ();
 
-        switch (Modes.mode (recovery_option)) {
+        this.mode = Modes.mode (recovery_option);
+        switch (this.mode) {
             case Modes.Mode.INSTALL:
                 headerbar.title = _("Install %s").printf (Utils.get_pretty_name ());
 
@@ -351,7 +353,7 @@ public class Installer.MainWindow : Gtk.Dialog {
             success_view.destroy ();
         }
 
-        success_view = new SuccessView (log);
+        success_view = new SuccessView (this.mode, log);
         stack.add (success_view);
         stack.visible_child = success_view;
 
