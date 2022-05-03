@@ -29,8 +29,6 @@ public class Installer.LanguageView : AbstractInstallerView {
     public signal void next_step ();
 
     public LanguageView () {
-        GLib.Timeout.add_seconds (3, timeout);
-
         var select_label = new Gtk.Label (null);
         select_label.halign = Gtk.Align.CENTER;
         select_label.wrap = true;
@@ -48,6 +46,8 @@ public class Installer.LanguageView : AbstractInstallerView {
             select_label: select_label,
             select_stack: select_stack
         );
+
+        GLib.Timeout.add_seconds (3, timeout);
     }
 
     construct {
@@ -100,6 +100,10 @@ public class Installer.LanguageView : AbstractInstallerView {
         });
 
         foreach (var lang_entry in LocaleHelper.get_lang_entries ().entries) {
+            if (lang_entry.value.name == null) {
+                continue;
+            }
+
             if (lang_entry.key in preferred_langs) {
                 var pref_langrow = new LangRow (lang_entry.value);
                 pref_langrow.preferred_row = true;
