@@ -52,6 +52,12 @@ public class Installer.App : Gtk.Application {
             return;
         }
 
+        // Since this is running as root, the default GTK theme settings are used that
+        // do not include CSS and icons needed for this installer. This defaults to the
+        // Pop-dark GTK theme and the Pop icon theme in order to fix this.
+        Gtk.Settings.get_default().set("gtk_theme_name", "Pop-dark");
+        Gtk.Settings.get_default().set("gtk_icon_theme_name", "Pop");
+
         var window = new MainWindow (distinst);
         window.show_all ();
         this.add_window (window);
