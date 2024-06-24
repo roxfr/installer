@@ -5,7 +5,7 @@
 !debian/links
 !debian/rules
 !debian/source
-debian/
+debian/*
 *~
 build/
 .buildconfig
