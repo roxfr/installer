@@ -159,24 +159,24 @@ msgid ""
 "Encrypting this drive protects data from being read by others with physical "
 "access to this device."
 msgstr ""
-“La crittografia di questa unità protegge i dati dalla lettura da parte di altre persone con ”
-“accesso a questo dispositivo”.
+"La crittografia di questa unità protegge i dati dalla lettura da parte di altre persone con "
+"accesso a questo dispositivo."
 
 #: src/Views/EncryptView.vala:60
 msgid ""
 "Drive encryption may minimally impact read and write speed when performing "
 "intense tasks."
 msgstr ""
-“La crittografia dell'unità può avere un impatto minimo sulla velocità di lettura e scrittura quando si eseguono ”
-“attività intense”.
+"La crittografia dell'unità può avere un impatto minimo sulla velocità di lettura e scrittura quando si eseguono "
+"attività intense."
 
 #: src/Views/EncryptView.vala:67
 msgid ""
 "The encryption password will be required each time you turn on this device "
 "or restart."
 msgstr ""
-“La password di crittografia sarà richiesta ogni volta che si accende il dispositivo ”
-“o al riavvio”.
+"La password di crittografia sarà richiesta ogni volta che si accende il dispositivo "
+"o al riavvio."
 
 #: src/Views/EncryptView.vala:83
 msgid ""
@@ -184,9 +184,9 @@ msgid ""
 "data.</b> This is a unique password for this device, not the password for "
 "your user account."
 msgstr ""
-“Se si dimentica la password di crittografia, <b>non sarà possibile recuperare i ”
-“i propri dati.</b> Si tratta di una password unica per questo dispositivo, non“
-“della password del proprio account utente.”
+"Se si dimentica la password di crittografia, <b>non sarà possibile recuperare i "
+"i propri dati.</b> Si tratta di una password unica per questo dispositivo, non"
+"della password del proprio account utente."
 
 #: src/Views/EncryptView.vala:90
 msgid "Choose Encryption Password"
@@ -306,8 +306,8 @@ msgid ""
 "Select which partitions to use across all drives. <b>Selecting \"Format\" "
 "will erase ALL data on the selected partition.</b>"
 msgstr ""
-“Selezionare le partizioni da utilizzare per tutte le unità. <b> Selezionando”
-“\"Formatta\" verranno cancellati TUTTI i dati presenti nella partizione selezionata”.
+"Selezionare le partizioni da utilizzare per tutte le unità. <b> Selezionando"
+"\"Formatta\" verranno cancellati TUTTI i dati presenti nella partizione selezionata."
 
 #: src/Views/PartitioningView.vala:52
 msgid "You must at least select a <b>Root (/)</b> partition."
