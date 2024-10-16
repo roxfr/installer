@@ -17,7 +17,7 @@ msgstr ""
 
 #: src/MainWindow.vala:199
 msgid "Refresh OS"
-msgstr "Actualiser le système d'exploitation"
+msgstr "Actualiser l'OS"
 
 #: src/MainWindow.vala:202
 #, c-format
@@ -285,7 +285,7 @@ msgstr "Les mots de passe ne correspondent pas"
 
 #: src/Views/EncryptedPartitionView.vala:15 src/Views/RefreshOSView.vala:13
 msgid "Select OS or Encrypted Partition"
-msgstr "Sélectionner le système d'exploitation ou la partition cryptée"
+msgstr "Sélectionner l'OS ou la partition chiffrée"
 
 #: src/Views/EncryptedPartitionView.vala:104 src/Views/RefreshOSView.vala:68
 #, c-format
